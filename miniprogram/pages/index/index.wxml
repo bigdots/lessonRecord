@@ -1,0 +1,13 @@
+<cu-custom bgColor="bg-gradual-blue">
+    <view slot="content">课时记录</view>
+</cu-custom>
+<navigator url="/pages/record/index">
+<view class="padding flex flex-direction">
+    <button class="cu-btn bg-orange button-hover margin-tb-sm lg" >记录课时</button>
+</view>
+</navigator>
+<navigator url="/pages/query1/index">
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-mauve margin-tb-sm lg" >查询课时</button>
+  </view>
+</navigator>

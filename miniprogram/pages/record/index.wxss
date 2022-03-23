@@ -1,0 +1,6 @@
+
+.hours{
+    width: 80rpx;
+    display: inline-block;
+    text-align: center;
+}

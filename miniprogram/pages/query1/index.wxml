@@ -1,0 +1,58 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">课时查询</view>
+</cu-custom>
+<form>
+  <view class="cu-form-group margin-top">
+    <view class="title">开始时间</view>
+    <picker mode="date" value="{{dateStart}}" data-type="start" start="2020-0-01" end="2040-09-01" bindchange="DateChange">
+      <view class="picker">{{dateStart}}</view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">结束时间</view>
+    <picker mode="date" value="{{dateEnd}}" data-type="end" start="2020-09-01" end="2040-09-01" bindchange="DateChange">
+      <view class="picker">{{dateEnd}}</view>
+    </picker>
+  </view>
+  <!-- <view class="cu-bar bg-white margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text>
+      学生
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-green shadow" bindtap="showModal" data-target="ChooseModal">
+        选择
+      </button>
+    </view>
+  </view>
+  <view class="cu-modal bottom-modal {{modalName=='ChooseModal'?'show':''}}" bindtap="hideModal">
+    <view class="cu-dialog" catchtap>
+      <view class="cu-bar bg-white">
+        <view class="action text-blue" bindtap="hideModal">取消</view>
+        <view class="action text-green" bindtap="hideModal">确定</view>
+      </view>
+      <view class="grid col-3 padding-sm">
+        <view wx:for="{{studentList}}" class="padding-xs" wx:key="{{index}}">
+          <button class="cu-btn orange lg block {{item.checked?'bg-orange':'line-orange'}}" bindtap="ChooseCheckbox" data-value="{{item.value}}">
+            {{item.name}}
+            <view class="cu-tag sm round {{item.checked?'bg-white text-orange':'bg-orange'}}" wx:if="{{item.hot}}">
+              HOT
+            </view>
+          </button>
+        </view>
+      </view>
+    </view>
+  </view> -->
+  <!-- <view class="cu-form-group margin-top">
+    <view class="title">老师</view>
+    <picker bindchange="PickerChange" value="{{index}}" range="{{teacherList}}">
+      <view class="picker">{{index?teacherList[index]:'请选择'}}</view>
+    </picker>
+  </view> -->
+  <selectS bindchange="handleSchange">学生</selectS>
+  <selectT bindchange="handleTchange">老师</selectT>
+</form>
+<view class="padding flex flex-direction">
+  <button class="cu-btn bg-cyan margin-tb-sm lg" bindtap="handleQueryBtn">查询</button>
+</view>

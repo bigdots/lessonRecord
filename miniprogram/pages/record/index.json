@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "selectS": "../component/selectS/index",
+    "selectT": "../component/selectT/index"
+  }
+}

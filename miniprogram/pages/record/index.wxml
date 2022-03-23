@@ -1,0 +1,25 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">课时记录</view>
+</cu-custom>
+<form>
+  <view class="cu-form-group margin-top">
+    <view class="title">日期</view>
+    <picker mode="date" value="{{date}}" start="2020-09-01" end="2040-09-01" bindchange="DateChange">
+      <view class="picker">{{date}}</view>
+    </picker>
+  </view>
+  <selectS bindchange="handleSchange">学生</selectS>
+  <selectT bindchange="handleTchange">老师</selectT>
+  <view class="cu-form-group margin-top">
+    <view class="title">课时</view>
+    <view bindtap="hourstap">
+      <text class="cuIcon-move lg text-gray" data-type='sub'></text>
+      <text class="text-gray hours">{{queryData.hours}}</text>
+      <text class="cuIcon-add lg text-gray" data-type='add'></text>
+    </view>
+  </view>
+</form>
+<view class="padding flex flex-direction">
+  <button class="cu-btn bg-cyan margin-tb-sm lg" bindtap='recordTap'>记录</button>
+</view>

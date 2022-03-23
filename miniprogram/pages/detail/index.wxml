@@ -1,0 +1,35 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">课时记录</view>
+</cu-custom>
+
+  <view class="cu-bar bg-white solid-bottom">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text> 课时列表
+    </view>
+  </view>
+  <view class="cu-list menu-avatar">
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{dataList}}" wx:key="_id" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+      
+      <view class="lesson_content">
+        <text class="text-grey">{{item.date}}</text>
+        <text class="text-grey">{{item.studentName}}</text>
+        <text class="text-grey">{{item.subject}}</text>
+        <text class="text-grey">{{item.hours}}h</text>
+      </view>
+
+      <view class="move">
+        <!-- <view class="bg-grey">置顶</view> -->
+        <view class="bg-red">删除</view>
+      </view>
+    </view>
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}">
+      
+      <view class="lesson_content">
+        <text class="text-grey">汇总</text>
+        <!-- <text class="text-grey">文晓港</text> -->
+        <!-- <text class="text-grey">科学</text> -->
+        <text class="text-grey">20h</text>
+      </view>
+    </view>
+  </view>
