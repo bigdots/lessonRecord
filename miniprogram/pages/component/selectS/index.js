@@ -70,9 +70,18 @@ Component({
       this.hidediaologModal();
     },
     sureTap() {
+      const {studentName,price} = this.data;
+      if(studentName=='' || price==''){
+        wx.showToast({
+          title: '请将内容填写完整',
+          icon: 'none'
+        })
+        return;
+      }
+    
       request("addStudents", {
-        studentName: this.data.studentName,
-        price: this.data.price,
+        studentName: studentName,
+        price: price,
       }).then((resp) => {
         this.getStudents()
         this.hidediaologModal();

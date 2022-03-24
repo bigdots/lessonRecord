@@ -11,12 +11,8 @@ Page({
     // motto: 'Hi~',
     dateStart: today,
     dateEnd: today,
-    queryData:{
-      dateStart: Date.parse(today),
-      dateEnd: Date.parse(today),
-      studentId: '',
-      teacherId: '',
-    },
+    studentId: '',
+    teacherId: '',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -37,12 +33,7 @@ Page({
     const val = e.detail.value
     this.setData({
       [key]: val,
-      queryData:{
-        ...this.data.queryData,
-        [key]: Date.parse(val)
-      } 
     })
-    console.log(this.data.queryData)
   },
 
   //事件处理函数
@@ -63,9 +54,9 @@ Page({
     })
   },
   handleQueryBtn(){
-    const {dateStart,dateEnd,studentId,teacherId} = this.data.queryData
+    const {dateStart,dateEnd,studentId,teacherId} = this.data
     wx.navigateTo({
-      url: `/pages/detail/index?dateStart=${dateStart}&dateEnd=${dateEnd}&studentId=${studentId}&teacherId=${teacherId}`,
+      url: `/pages/detail/index?dateStart=${Date.parse(dateStart)}&dateEnd=${Date.parse(dateEnd)}&studentId=${studentId}&teacherId=${teacherId}`,
     })
   },
   ChooseCheckbox(e) {
@@ -96,20 +87,15 @@ Page({
     console.log(290,e)
     const {_id,value} = e.detail
     this.setData({
-      queryData:{
-        ...this.data.queryData,
-        studentId: _id
-      }
+      studentId: _id
+    
     })
   },
   handleTchange(e){
     console.log(190,e)
     const {_id,value} = e.detail
     this.setData({
-      queryData:{
-        ...this.data.queryData,
-        teacherId: _id
-      }
+      teacherId: _id
     })
   },
   onLoad () {

@@ -10,12 +10,9 @@ Page({
     CustomBar: app.globalData.CustomBar,
     // motto: 'Hi~',
     date: today,
-    queryData:{
-      date: Date.parse(today),
-      studentId: '',
-      hours: 2,
-      teacherId:''
-    },
+    studentId: '',
+    hours: 2,
+    teacherId:'',
     studentList: [{
       name: '123',
       _id: 56
@@ -28,10 +25,7 @@ Page({
   PickerChange(e){
     console.log(e)
     this.setData({
-      queryData: {
-        ...this.data.queryData,
-        hours: this.data.picker[e.detail.value]
-      }
+      hours: this.data.picker[e.detail.value]
     })
   },
   DateChange(e) {
@@ -39,12 +33,8 @@ Page({
     const val = e.detail.value
     this.setData({
       date: val,
-      queryData:{
-        ...this.data.queryData,
-        date: Date.parse(val)
-      }
+      // date: Date.parse(val)
     })
-    // console.log(this.data.queryData)
   },
   showModal(e) {
     this.setData({
@@ -76,21 +66,16 @@ Page({
   hourstap(e){
     console.log(e)
     const type  = e.target.dataset.type
-    const h = this.data.queryData.hours
+    const h = this.data.hours
     if(type=='add'){
+      
       this.setData({
-        queryData:{
-          ...this.data.queryData,
-          hours: h+0.5
-        }
+        hours: h+0.5
       })
     }else if(type=='sub'){
       const r = h-0.5
       this.setData({
-        queryData:{
-          ...this.data.queryData,
-          hours: r >0 ? r : 0
-        }
+        hours: r >0 ? r : 0
       })
     }
   },
@@ -99,11 +84,33 @@ Page({
   },
 
   async addRecord(){
-    const resp = await request('addlesson',this.data.queryData)
+    const {date,
+      studentId,
+      hours,
+      teacherId} = this.data
+      if(date=='' || studentId=='' || hours=='' || teacherId==''){
+        wx.showToast({
+          title: '请将内容填写完整',
+          icon: 'none'
+        })
+        return;
+      }
+    const resp = await request('addlesson',{
+      date: Date.parse(date),
+      studentId,
+      hours,
+      teacherId,
+    })
   
     if(resp.succeed){
+      wx.showToast({
+        title: '操作成功',
+      })
       // this.setData({
-      //   studentList: resp.data
+      //   date: today,
+      //   studentId: '',
+      //   hours: 2,
+      //   teacherId:'',
       // })
     }
   },
@@ -111,19 +118,13 @@ Page({
     console.log(90,e)
     const {_id,value} = e.detail
     this.setData({
-      queryData:{
-        ...this.data.queryData,
-        studentId: _id
-      }
+      studentId: _id
     })
   },
   handleTchange(e){
     const {_id,value} = e.detail
     this.setData({
-      queryData:{
-        ...this.data.queryData,
-        teacherId: _id
-      }
+      teacherId: _id
     })
   },
 

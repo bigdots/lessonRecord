@@ -11,7 +11,13 @@
   </view>
   <view class="cu-modal drawer-modal justify-end {{modalName=='DrawerModalR'?'show':''}}" bindtap="hideModal">
     <view class="cu-dialog basis-lg" catchtap style="top:{{CustomBar}}px;height:calc(100vh - {{CustomBar}}px)">
-      <view class="cu-list menu text-left">
+      <view class="cu-list menu text-left" catchtap="handleItemtap">
+        <view class="cu-item " data-target="unlimited" data-value="123" >
+          <view class="content">
+            <text class="cuIcon-friendadd lg text-gray"></text>
+            <text class="text-grey">不限</text>
+          </view>
+        </view>
         <view bindtap="handleSelStu" data-value="{{item}}" class="cu-item  {{drawerModalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{dataList}}" wx:key="_id" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
           <view class="content">
             <text class="cuIcon-selection lg text-gray"></text>
@@ -22,24 +28,31 @@
             <view class="bg-red">删除</view>
           </view>
         </view>
+        <view class="cu-item " data-target="add" bindtap="handleAdd">
+          <view class="content">
+            <text class="cuIcon-friendadd lg text-gray"></text>
+            <text class="text-grey">新增</text>
+          </view>
+        </view>
       </view>
     </view>
   </view>
+
   <view class="cu-modal {{dialogModalName=='DialogModal1'?'show':''}}">
     <view class="cu-dialog">
       <view class="cu-bar bg-white justify-end">
-        <view class="content">修改</view>
+        <view class="content">新增</view>
         <view class="action" bindtap="hidediaologModal">
           <text class="cuIcon-close text-red"></text>
         </view>
       </view>
       <view class="cu-form-group">
         <view class="title">姓名</view>
-        <input placeholder="请填写学生姓名" model:value="{{teacherName}}"></input>
+        <input placeholder="请填写姓名" model:value="{{teacherName}}"></input>
       </view>
       <view class="cu-form-group">
         <view class="title">科目</view>
-        <input placeholder="请填写每小时课酬" model:value="{{subject}}"></input>
+        <input placeholder="请填写科目" model:value="{{subject}}"></input>
       </view>
       <view class="cu-bar bg-white justify-end">
         <view class="action">

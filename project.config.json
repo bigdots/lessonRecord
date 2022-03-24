@@ -45,7 +45,7 @@
         "ignoreUploadUnusedFiles": true
     },
     "appid": "wx26efd6acbd0b7082",
-    "projectname": "lessonsRecord",
+    "projectname": "lessonRecord",
     "libVersion": "2.23.0",
     "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
     "condition": {

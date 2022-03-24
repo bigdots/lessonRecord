@@ -12,7 +12,8 @@ Component({
       name: '',
       price: '',
       dataList: [],
-      teacherName: '请选择'
+      teacherName: '请选择',
+      subject: '',
     },
     methods:{
       showModal(e) {
@@ -69,23 +70,26 @@ Component({
     cancelTap(){
       this.hidediaologModal()
     },
-    // sureTap(){   
-    //   request('')
-    //   wx.cloud.callFunction({
-    //       name: 'lesson',
-    //       config: {
-    //         env: this.data.envId
-    //       },
-    //       data: {
-    //         type: 'addStudents',
-    //         name: this.data.name,
-    //         price: this.data.price
-    //       }
-    //     }).then((resp) => {
-    //       console.log('addstu',resp)
-    //       this.hidediaologModal()
-    //   })
-    // },
+    sureTap(){
+      const {teacherName,subject} = this.data
+      if(teacherName == '' || subject == ''){
+        wx.showToast({
+          title: '请将内容填写完整',
+          icon: 'none'
+        })
+        return;
+      }
+      request('addTeacher',{
+        teacherName,
+        subject
+      }).then((resp) => {
+        this.getTeachers()
+        this.hidediaologModal()
+     })
+    },
+    handleItemtap(e){
+      console.log(678,e)
+    },
     handleAdd(){
       this.showDialogModal()
     },
