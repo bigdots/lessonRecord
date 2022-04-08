@@ -27,9 +27,8 @@
       
       <view class="lesson_content">
         <text class="text-grey">汇总</text>
-        <!-- <text class="text-grey">文晓港</text> -->
-        <!-- <text class="text-grey">科学</text> -->
-        <text class="text-grey">20h</text>
+        <text class="text-grey">{{totalhours}}h</text>
+        <text class="text-grey">￥{{totalMoney}}</text>
       </view>
     </view>
   </view>

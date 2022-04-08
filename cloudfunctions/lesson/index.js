@@ -6,6 +6,7 @@ const deleteStudent = require('./students/delete')
 const addTeacher = require('./teachers/set')
 const isregister = require('./teachers/isregister')
 const getTeacher = require('./teachers/get')
+const deleteTeacher = require('./teachers/delete')
 
 const getLessons = require('./lessons/get')
 const addlesson = require('./lessons/set')
@@ -32,6 +33,8 @@ exports.main = async (event, context) => {
       return await deleteStudent.main(event,context)
     case 'getLessons':
       return await getLessons.main(event,context)
+    case 'deleteTeacher':
+      return await deleteTeacher.main(event,context)
     default:
       return {}
   }

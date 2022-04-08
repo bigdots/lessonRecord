@@ -54,7 +54,10 @@ Page({
     })
   },
   handleQueryBtn(){
-    const {dateStart,dateEnd,studentId,teacherId} = this.data
+    let {dateStart,dateEnd,studentId,teacherId} = this.data
+    dateStart = dateStart.replace(/-/g, '/')
+    dateEnd = dateEnd.replace(/-/g, '/')
+    // console.log(dateStart,Date.parse(dateStart))
     wx.navigateTo({
       url: `/pages/detail/index?dateStart=${Date.parse(dateStart)}&dateEnd=${Date.parse(dateEnd)}&studentId=${studentId}&teacherId=${teacherId}`,
     })

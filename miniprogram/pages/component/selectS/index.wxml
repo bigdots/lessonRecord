@@ -12,6 +12,12 @@
   <view class="cu-modal drawer-modal justify-end {{modalName=='DrawerModalR'?'show':''}}" bindtap="hideModal">
     <view class="cu-dialog basis-lg" catchtap style="top:{{CustomBar}}px;height:calc(100vh - {{CustomBar}}px)">
       <view class="cu-list menu text-left">
+        <view class="cu-item " bindtap="handleTapItem"  data-target="unlimited" data-value="{{unlimitVal}}">
+          <view class="content" data-type="select">
+            <text class="cuIcon-friendadd lg text-gray"></text>
+            <text class="text-grey">不限</text>
+          </view>
+        </view>
         <view bindtap="handleTapItem" data-value="{{item}}" class="cu-item  {{drawerModalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{dataList}}" wx:key="_id" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
           <view class="content" data-type="select">
             <text class="cuIcon-selection lg text-gray"></text>

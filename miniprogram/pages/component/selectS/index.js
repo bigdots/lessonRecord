@@ -12,6 +12,11 @@ Component({
     studentName: "请选择",
     price: "",
     dataList: [],
+    unlimitVal: {
+      studentName: '不限',
+      _id: '',
+      price: ''
+    }
     // studentName: "请选择",
   },
 
@@ -94,7 +99,9 @@ Component({
       console.log(e);
       const { value } = e.currentTarget.dataset;
       const { type } = e.target.dataset;
+      console.error(type)
       if (type == "select") {
+        console.log(333)
        this.selectStu(value)
       }
       if(type == "delete"){

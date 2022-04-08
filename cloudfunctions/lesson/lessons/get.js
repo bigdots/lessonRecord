@@ -18,7 +18,7 @@ exports.main = async (event, context) => {
   const query = {}
   // console.log()
   if(dateStart && dateEnd) {
-    // query.date = _.gte(parseInt(dateStart)).and(_.lte(parseInt(dateEnd)));
+    query.date = _.gte(parseInt(dateStart)).and(_.lte(parseInt(dateEnd)));
   }
   if(studentId) query.studentId = studentId;
   if(teacherId) query.teacherId = teacherId;

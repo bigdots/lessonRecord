@@ -14,6 +14,11 @@ Component({
       dataList: [],
       teacherName: '请选择',
       subject: '',
+      unlimitVal: {
+        teacherName: '不限',
+        _id: '',
+        subject: ''
+      }
     },
     methods:{
       showModal(e) {
@@ -93,14 +98,47 @@ Component({
     handleAdd(){
       this.showDialogModal()
     },
-    handleSelStu(e){
-      console.log(e)
-      const val = e.currentTarget.dataset.value
-      this.hideModal()
+    // handleSelStu(e){
+    //   console.log(e)
+    //   const {value,target} = e.currentTarget.dataset;
+     
+    //   this.hideModal()
+    //   this.setData({
+    //     teacherName:value.teacherName,
+    //   })
+    //   this.triggerEvent('change',value)
+    // },
+    handleTapItem(e) {
+      console.log(e);
+      const { value } = e.currentTarget.dataset;
+      const { type } = e.target.dataset;
+      console.error(type)
+      if (type == "select") {
+        // console.log(333)
+       this.selectStu(value)
+      }
+      if(type == "delete"){
+        this.deleteStu(value._id)
+      }
+    },
+    selectStu(value){
+      this.hideModal();
       this.setData({
-        teacherName: val.teacherName
-      })
-      this.triggerEvent('change',val)
+        teacherName: value.teacherName,
+      });
+      this.triggerEvent("change", value);
+    },
+    async deleteStu(teacherId) {
+      let resp = await request("deleteTeacher",{
+        teacherId
+      });
+      if (resp.succeed) {
+        // this.data.dataList.splice()
+        wx.showToast({
+          title: "删除成功",
+        });
+        this.getTeachers();
+      }
     },
     async getTeachers(){
       let resp = await request('getTeacher')
