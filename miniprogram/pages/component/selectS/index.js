@@ -13,10 +13,10 @@ Component({
     price: "",
     dataList: [],
     unlimitVal: {
-      studentName: '不限',
-      _id: '',
-      price: ''
-    }
+      studentName: "不限",
+      _id: "",
+      price: "",
+    },
     // studentName: "请选择",
   },
 
@@ -75,40 +75,49 @@ Component({
       this.hidediaologModal();
     },
     sureTap() {
-      const {studentName,price} = this.data;
-      if(studentName=='' || price==''){
+      const { studentName, price } = this.data;
+      if (studentName == "" || price == "") {
         wx.showToast({
-          title: '请将内容填写完整',
-          icon: 'none'
-        })
+          title: "请将内容填写完整",
+          icon: "none",
+        });
         return;
       }
-    
+
       request("addStudents", {
         studentName: studentName,
         price: price,
       }).then((resp) => {
-        this.getStudents()
+        this.getStudents();
         this.hidediaologModal();
       });
     },
     handleAdd() {
-      this.showDialogModal();
+      this.setData({
+        studentName: "",
+        price: "",
+        dialogModalName: "DialogModal1",
+      });
     },
     handleTapItem(e) {
       console.log(e);
       const { value } = e.currentTarget.dataset;
       const { type } = e.target.dataset;
-      console.error(type)
-      if (type == "select") {
-        console.log(333)
-       this.selectStu(value)
-      }
-      if(type == "delete"){
-        this.deleteStu(value._id)
+
+      if (type == "delete") {
+        this.deleteStu(value._id);
+      } else if (type == "update") {
+        this.setData({
+          studentName: value.studentName,
+          price: value.price,
+          dialogModalName: "DialogModal1",
+        });
+      } else {
+        console.log("select");
+        this.selectStu(value);
       }
     },
-    selectStu(value){
+    selectStu(value) {
       this.hideModal();
       this.setData({
         studentName: value.studentName,
@@ -116,8 +125,8 @@ Component({
       this.triggerEvent("change", value);
     },
     async deleteStu(studentId) {
-      let resp = await request("deleteStudent",{
-        studentId
+      let resp = await request("deleteStudent", {
+        studentId,
       });
       if (resp.succeed) {
         // this.data.dataList.splice()
@@ -127,7 +136,23 @@ Component({
         this.getStudents();
       }
     },
-   
+
+    async updateStu(event) {
+      const { studentId, studentName, price } = event;
+      let resp = await request("updateStudent", {
+        studentId,
+        studentName,
+        price,
+      });
+      if (resp.succeed) {
+        // this.data.dataList.splice()
+        wx.showToast({
+          title: "更新成功",
+        });
+        this.getStudents();
+      }
+    },
+
     getStudents: async function () {
       let resp = await request("getStudents");
       if (resp.succeed) {
